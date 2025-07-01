@@ -19,16 +19,16 @@ public class Enrollment {
 
 	@EmbeddedId
 	private EnrollmentPK id = new EnrollmentPK();
-	
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant enrollMoment;
-	
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant refundMoment;
-	
+
 	private boolean available;
 	private boolean onlyUpdate;
-	
+
 	@ManyToMany(mappedBy = "enrollmentsDone")
 	private Set<Lesson> lessonsDone = new HashSet<>();
 
@@ -92,6 +92,10 @@ public class Enrollment {
 
 	public void setOnlyUpdate(boolean onlyUpdate) {
 		this.onlyUpdate = onlyUpdate;
+	}
+
+	public Set<Lesson> getLessonsDone() {
+		return lessonsDone;
 	}
 
 	@Override
