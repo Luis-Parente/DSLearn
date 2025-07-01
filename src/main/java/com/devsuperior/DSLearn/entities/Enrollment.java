@@ -1,7 +1,9 @@
 package com.devsuperior.DSLearn.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,6 +34,9 @@ public class Enrollment {
 
 	@ManyToMany(mappedBy = "enrollmentsDone")
 	private Set<Lesson> lessonsDone = new HashSet<>();
+
+	@OneToMany(mappedBy = "enrollment")
+	private List<Deliver> deliveries = new ArrayList<>();
 
 	public Enrollment() {
 
@@ -96,6 +102,10 @@ public class Enrollment {
 
 	public Set<Lesson> getLessonsDone() {
 		return lessonsDone;
+	}
+
+	public List<Deliver> getDeliveries() {
+		return deliveries;
 	}
 
 	@Override
